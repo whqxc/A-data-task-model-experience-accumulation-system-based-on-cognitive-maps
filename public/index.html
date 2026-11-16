@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="记录经验、查找经验、复用经验、推荐模型——数据任务模型经验沉淀系统 Demo">
+  <title>知模 · 认知经验中枢</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><circle cx="10" cy="20" r="4"/><circle cx="28" cy="10" r="4"/><circle cx="30" cy="30" r="4"/><path d="m13 18 11-6M13 22l13 6M28 14l1 12"/></svg>
+        </div>
+        <div><strong>知模</strong><span>认知经验中枢</span></div>
+      </div>
+      <div class="project-tag">COGNITIVE MAP · DEMO</div>
+      <nav class="main-nav" aria-label="主导航">
+        <button class="nav-item active" data-view="overview" aria-label="经验总览">
+          <svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>
+          <span>经验总览</span>
+        </button>
+        <button class="nav-item" data-view="recommend" aria-label="智能推荐">
+          <svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 16 .9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9L19 16Z"/></svg>
+          <span>智能推荐</span><span class="nav-badge">AI</span>
+        </button>
+        <button class="nav-item" data-view="record" aria-label="沉淀新经验">
+          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          <span>沉淀新经验</span>
+        </button>
+        <button class="nav-item" data-view="archive" aria-label="实验档案">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16v13H4V7Zm-1-3h18v3H3V4Zm5 7h8"/></svg>
+          <span>实验档案</span><span class="nav-count" id="navExperimentCount">—</span>
+        </button>
+      </nav>
+      <div class="sidebar-note">
+        <div class="note-icon">↗</div>
+        <strong>经验不是结果，是资产</strong>
+        <p>让数据、任务与模型之间的每一次连接都可追溯。</p>
+      </div>
+      <div class="sidebar-footer"><span class="status-dot"></span>本地经验库已连接<span>v1.0</span></div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div><span class="topbar-kicker">国家数据集团（筹）联合研究项目</span><span class="topbar-divider">/</span><strong id="pageTitle">经验总览</strong></div>
+        <div class="topbar-right"><span class="demo-label">演示数据</span><button class="icon-button" id="refreshButton" title="刷新数据" aria-label="刷新数据"><svg viewBox="0 0 24 24"><path d="M20 6v5h-5M4 18v-5h5M6.1 8A7 7 0 0 1 18 6l2 5M4 13l2 5a7 7 0 0 0 11.9-2"/></svg></button><div class="avatar">研</div></div>
+      </header>
+
+      <div class="content">
+        <section class="view active" id="view-overview">
+          <div class="hero">
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-copy">
+              <span class="eyebrow light">DATA · TASK · MODEL</span>
+              <h1>让每一次实验，<br>成为下一次的起点。</h1>
+              <p>把分散的开发过程沉淀为可检索、可解释、可复用的模型经验。</p>
+              <div class="hero-actions"><button class="button button-accent" data-go="recommend">为新任务寻找经验 <span>→</span></button><button class="button button-ghost" id="showMapButton">查看认知地图</button></div>
+            </div>
+            <div class="hero-orbit" aria-hidden="true">
+              <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+              <div class="orbit-node node-data"><small>DATA</small><strong>数据</strong></div>
+              <div class="orbit-node node-task"><small>TASK</small><strong>任务</strong></div>
+              <div class="orbit-node node-model"><small>MODEL</small><strong>模型</strong></div>
+              <div class="orbit-center"><svg viewBox="0 0 32 32"><path d="m16 3 2.5 8.5L27 14l-8.5 2.5L16 25l-2.5-8.5L5 14l8.5-2.5L16 3Z"/></svg></div>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-icon green"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4V5Zm4 4h8M8 13h5"/></svg></div><div><span>沉淀任务</span><strong id="statTasks">—</strong><small>个历史任务</small></div></article>
+            <article class="stat-card"><div class="stat-icon blue"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg></div><div><span>关联数据集</span><strong id="statDatasets">—</strong><small>套数据处理经验</small></div></article>
+            <article class="stat-card"><div class="stat-icon violet"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></div><div><span>模型资产</span><strong id="statModels">—</strong><small>个可复用模型</small></div></article>
+            <article class="stat-card"><div class="stat-icon amber"><svg viewBox="0 0 24 24"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg></div><div><span>实验成功率</span><strong id="statSuccessRate">—</strong><small id="statExperiments">共 — 次实验</small></div></article>
+          </div>
+
+          <div class="overview-grid">
+            <article class="card map-card" id="mapSection">
+              <div class="card-header"><div><span class="eyebrow">COGNITIVE MAP</span><h2>数据—任务—模型认知地图</h2><p>每一条连线，都是一次经过实验验证的关联。</p></div><span class="soft-badge">实时关联</span></div>
+              <div class="graph-wrap"><svg id="cognitiveGraph" role="img" aria-label="数据、任务与模型的关联图"></svg></div>
+              <div class="graph-legend"><span><i class="legend-dot dataset"></i>数据集</span><span><i class="legend-dot task"></i>任务</span><span><i class="legend-dot model"></i>模型</span><span class="graph-hint">节点悬浮可查看完整名称</span></div>
+            </article>
+
+            <article class="card recent-card">
+              <div class="card-header compact"><div><span class="eyebrow">RECENT</span><h2>最近沉淀</h2></div><button class="text-button" data-go="archive">全部档案 →</button></div>
+              <div class="recent-list" id="recentExperiments"><div class="loading-state">正在读取经验库…</div></div>
+              <div class="recent-footer"><span class="status-dot"></span>所有推荐均可追溯至这些实验</div>
+            </article>
+          </div>
+
+          <article class="card loop-card">
+            <div class="card-header compact"><div><span class="eyebrow">EXPERIENCE LOOP</span><h2>经验持续生长，而非一次性问答</h2></div><button class="text-button" data-go="record">记录一次实验 →</button></div>
+            <div class="experience-loop">
+              <div class="loop-step"><span>01</span><div class="loop-icon">记</div><div><strong>记录经验</strong><p>统一保存任务、数据、模型与指标</p></div></div>
+              <div class="loop-arrow">→</div>
+              <div class="loop-step"><span>02</span><div class="loop-icon">寻</div><div><strong>查找经验</strong><p>多维度计算历史任务相似度</p></div></div>
+              <div class="loop-arrow">→</div>
+              <div class="loop-step"><span>03</span><div class="loop-icon">用</div><div><strong>复用经验</strong><p>提取成功方法与失败避坑提示</p></div></div>
+              <div class="loop-arrow">→</div>
+              <div class="loop-step"><span>04</span><div class="loop-icon">荐</div><div><strong>推荐模型</strong><p>给出有实验依据的训练起点</p></div></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="view-recommend">
+          <div class="section-heading"><div><span class="eyebrow">EXPERIENCE REUSE</span><h1>为新任务，找到可靠的起点</h1><p>不是凭空生成答案，而是从相似历史任务的成功实验中寻找证据。</p></div><span class="soft-badge large">可解释推荐</span></div>
+          <div class="recommend-layout">
+            <div class="card task-input-card">
+              <div class="card-header compact"><div><span class="step-label">STEP 01</span><h2>描述你的新任务</h2></div><svg class="header-icon" viewBox="0 0 24 24"><path d="M4 5h16v14H4V5Zm4 4h8M8 13h5"/></svg></div>
+              <div class="sample-row"><span>快速示例</span><button type="button" data-sample="steel">工业缺陷</button><button type="button" data-sample="review">评论情感</button><button type="button" data-sample="churn">客户流失</button></div>
+              <form id="recommendForm">
+                <div class="field"><label for="recommendName">任务名称 <b>*</b></label><input id="recommendName" name="name" required placeholder="例如：轴承表面缺陷分类"></div>
+                <div class="field"><label for="recommendDescription">任务描述 <b>*</b></label><textarea id="recommendDescription" name="description" rows="4" required placeholder="描述目标、数据特点以及最关心的问题…"></textarea></div>
+                <div class="form-grid two">
+                  <div class="field"><label for="recommendModality">数据模态</label><select id="recommendModality" name="modality"><option value="image">图像</option><option value="text">文本</option><option value="tabular">表格</option></select></div>
+                  <div class="field"><label for="recommendScale">数据规模</label><select id="recommendScale" name="dataScale"><option value="small">小样本（&lt; 1 万）</option><option value="medium">中规模（1—10 万）</option><option value="large">大规模（&gt; 10 万）</option></select></div>
+                </div>
+                <div class="form-grid two">
+                  <div class="field"><label for="recommendDomain">应用领域 <b>*</b></label><input id="recommendDomain" name="domain" required list="domainOptions" placeholder="例如：工业制造"><datalist id="domainOptions"><option value="工业制造"><option value="零售电商"><option value="医疗健康"><option value="遥感测绘"><option value="法律合同"></datalist></div>
+                  <div class="field"><label for="recommendType">任务类型 <b>*</b></label><input id="recommendType" name="taskType" required list="typeOptions" placeholder="例如：图像分类"><datalist id="typeOptions"><option value="图像分类"><option value="目标检测"><option value="文本分类"><option value="命名实体识别"><option value="二分类"><option value="异常检测"></datalist></div>
+                </div>
+                <button class="button button-primary full-width" id="recommendButton" type="submit"><svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/></svg>查找经验并生成推荐<span>→</span></button>
+              </form>
+              <div class="algorithm-note"><strong>相似度如何计算？</strong><p>数据模态 30% + 任务类型 20% + 应用领域 15% + 数据规模 10% + 描述语义 25%</p></div>
+            </div>
+
+            <div class="recommend-output" id="recommendOutput">
+              <div class="card empty-card" id="recommendEmpty"><div class="empty-visual"><div class="empty-ring ring-a"></div><div class="empty-ring ring-b"></div><svg viewBox="0 0 48 48"><path d="m24 7 3.5 12.5L40 23l-12.5 3.5L24 39l-3.5-12.5L8 23l12.5-3.5L24 7Z"/></svg></div><h2>经验库已准备就绪</h2><p>填写左侧任务信息，系统将查找相似历史任务，并给出模型、数据处理和训练参数建议。</p><div class="empty-features"><span>相似任务排序</span><span>成功实验复用</span><span>失败风险提醒</span></div></div>
+              <div id="recommendationResults" hidden></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-record">
+          <div class="section-heading"><div><span class="eyebrow">EXPERIENCE CAPTURE</span><h1>把一次实验，沉淀为可复用经验</h1><p>成功与失败都值得记录。完整上下文比单独一个分数更有价值。</p></div><button class="button button-secondary" id="fillRecordSample" type="button">填入示例</button></div>
+          <form id="recordForm" class="record-form">
+            <article class="card form-section"><div class="form-section-title"><span class="section-number">01</span><div><h2>任务上下文</h2><p>这次实验要解决什么问题？</p></div></div><div class="form-grid three"><div class="field span-two"><label for="taskName">任务名称 *</label><input id="taskName" name="taskName" required placeholder="例如：轴承表面缺陷分类"></div><div class="field"><label for="taskDomain">应用领域 *</label><input id="taskDomain" name="taskDomain" required placeholder="工业制造"></div><div class="field span-full"><label for="taskDescription">任务描述 *</label><textarea id="taskDescription" name="taskDescription" rows="3" required placeholder="任务目标、业务背景和主要难点"></textarea></div><div class="field"><label for="taskModality">数据模态</label><select id="taskModality" name="taskModality"><option value="image">图像</option><option value="text">文本</option><option value="tabular">表格</option></select></div><div class="field"><label for="taskType">任务类型 *</label><input id="taskType" name="taskType" required placeholder="图像分类"></div><div class="field"><label for="taskScale">数据规模</label><select id="taskScale" name="taskScale"><option value="small">小样本</option><option value="medium">中规模</option><option value="large">大规模</option></select></div><div class="field"><label for="taskMetric">评估指标 *</label><input id="taskMetric" name="taskMetric" required placeholder="F1 / AUC / mAP"></div></div></article>
+
+            <article class="card form-section"><div class="form-section-title"><span class="section-number">02</span><div><h2>数据与模型</h2><p>记录数据和模型之间的适配关系。</p></div></div><div class="form-grid three"><div class="field"><label for="datasetName">数据集名称 *</label><input id="datasetName" name="datasetName" required placeholder="轴承质检图像集"></div><div class="field"><label for="datasetSize">样本数量 *</label><input id="datasetSize" name="datasetSize" type="number" min="1" required placeholder="5000"></div><div class="field"><label for="datasetFeatures">数据特征 *</label><input id="datasetFeatures" name="datasetFeatures" required placeholder="3 类缺陷，RGB 图像"></div><div class="field span-full"><label for="preprocessing">数据预处理 *</label><input id="preprocessing" name="preprocessing" required placeholder="缩放、归一化、数据增强、特征编码…"></div><div class="field"><label for="modelName">模型名称 *</label><input id="modelName" name="modelName" required placeholder="ResNet-50"></div><div class="field"><label for="modelFamily">模型类别 *</label><input id="modelFamily" name="modelFamily" required placeholder="CNN"></div><div class="field checkbox-field"><label for="pretrained"><input id="pretrained" name="pretrained" type="checkbox"><span>使用预训练权重</span></label></div></div></article>
+
+            <article class="card form-section"><div class="form-section-title"><span class="section-number">03</span><div><h2>实验与结论</h2><p>保存可复现的参数，以及值得复用的经验。</p></div></div><div class="form-grid four"><div class="field"><label for="experimentStatus">实验结果</label><select id="experimentStatus" name="experimentStatus"><option value="success">成功</option><option value="failed">失败 / 未达预期</option></select></div><div class="field"><label for="experimentScore">指标得分（0—100）*</label><input id="experimentScore" name="experimentScore" type="number" min="0" max="100" step="0.01" required placeholder="91.5"></div><div class="field"><label for="learningRate">学习率 *</label><input id="learningRate" name="learningRate" type="number" min="0" step="any" required placeholder="0.0001"></div><div class="field"><label for="batchSize">批大小 *</label><input id="batchSize" name="batchSize" type="number" min="1" required placeholder="32"></div><div class="field"><label for="epochs">训练轮数 *</label><input id="epochs" name="epochs" type="number" min="1" required placeholder="30"></div><div class="field"><label for="optimizer">优化器 *</label><input id="optimizer" name="optimizer" required placeholder="AdamW"></div><div class="field span-two"><label for="trainingTime">训练耗时 *</label><input id="trainingTime" name="trainingTime" required placeholder="45 分钟"></div><div class="field span-full"><label for="experimentNotes">经验总结 *</label><textarea id="experimentNotes" name="experimentNotes" rows="3" required placeholder="哪些设置有效？出现了什么问题？下一次应该注意什么？"></textarea></div></div></article>
+            <div class="record-submit"><p>提交后，该实验会立即进入认知地图并参与后续推荐。</p><button class="button button-primary" id="saveExperienceButton" type="submit">沉淀到经验库 <span>→</span></button></div>
+          </form>
+        </section>
+
+        <section class="view" id="view-archive">
+          <div class="section-heading"><div><span class="eyebrow">EXPERIMENT ARCHIVE</span><h1>实验档案</h1><p>所有推荐结论的原始证据，点击记录查看完整实验上下文。</p></div><button class="button button-primary" data-go="record">+ 记录实验</button></div>
+          <article class="card archive-card">
+            <div class="archive-toolbar"><div class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="archiveSearch" type="search" placeholder="搜索任务、模型或数据集…"></div><select id="archiveModality" aria-label="按数据模态筛选"><option value="all">全部模态</option><option value="image">图像</option><option value="text">文本</option><option value="tabular">表格</option></select><select id="archiveStatus" aria-label="按实验状态筛选"><option value="all">全部结果</option><option value="success">成功</option><option value="failed">失败 / 未达预期</option></select><span class="archive-count" id="archiveCount">— 条记录</span></div>
+            <div class="table-wrap"><table><thead><tr><th>任务 / 数据集</th><th>模型</th><th>模态</th><th>评估结果</th><th>实验状态</th><th>记录时间</th><th></th></tr></thead><tbody id="experimentTableBody"></tbody></table></div>
+            <div class="empty-table" id="archiveEmpty" hidden>没有符合条件的实验记录</div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="experimentDialog" class="experiment-dialog"><button class="dialog-close" id="closeDialog" aria-label="关闭">×</button><div id="dialogContent"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
